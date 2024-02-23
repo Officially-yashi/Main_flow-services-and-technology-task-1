@@ -1,23 +1,26 @@
 let flag=2;
 
-var TrandingSlider = new Swiper('.tranding-slider', {
-  effect: 'coverflow',
-  grabCursor: true,
-  centeredSlides: true,
-  loop: true,
-  slidesPerView: 'auto',
-  coverflowEffect: {
-    rotate: 0,
-    stretch: 0,
-    depth: 100,
-    modifier: 2.5,
-  },
-  pagination: {
-    el: '.swiper-pagination',
-    clickable: true,
-  },
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  }
-});
+function controller(x)
+{
+  flag=flag+x;
+  slideshow(flag);
+}
+
+slideshow(flag);
+
+function slideshow(num){
+    let slides=document.getElementsByClassName('slide');
+    if(num==slides.length){
+      flag=0;
+      num=0;
+    }
+    if(num<0){
+        flag=slides.length-1;
+        num=slides.length-1;
+    }
+    for(let y of slides)
+    {
+        y.style.display="none";
+    }
+   slides[num].style.display="block"; 
+}
